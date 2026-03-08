@@ -1,35 +1,33 @@
 const API_KEY = 'AIzaSyDpifV8J2_NIouCqiTBiQFTiAt-YH-XNWU';
+const BLOCKED_CHANNELS = ['ChannelName1', 'ChannelName2']; // Add channels here
+const BLOCKED_KEYWORDS = ['keyword1', 'keyword2']; // Add keywords here
 
-async function fetchVideos() {
+async function fetchVideos(query = '') {
     const grid = document.getElementById('video-grid');
-    const status = document.getElementById('status');
+    const endpoint = query 
+        ? `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&maxResults=15&key=${API_KEY}`
+        : `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&maxResults=15&key=${API_KEY}`;
     
-    // Increased maxResults to 20 to ensure we get plenty of data
-    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&chart=mostPopular&maxResults=20&key=${API_KEY}`;
+    const response = await fetch(endpoint);
+    const data = await response.json();
     
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
+    grid.innerHTML = '';
+    
+    data.items.forEach(video => {
+        const title = video.snippet.title;
+        const channel = video.snippet.channelTitle;
         
-        console.log("Full API Response:", data); // Check this in F12 Console
-        grid.innerHTML = ''; 
+        // Filter logic
+        const isBlocked = BLOCKED_CHANNELS.includes(channel) || 
+                          BLOCKED_KEYWORDS.some(word => title.toLowerCase().includes(word.toLowerCase()));
         
-        data.items.forEach(video => {
-            const duration = video.contentDetails.duration;
-            
-            // Filter: Only exclude if it's explicitly a Short (no "M" in duration)
-            if (duration.includes('M')) {
-                grid.innerHTML += `
-                    <div class="cursor-pointer hover:opacity-75 transition" onclick="window.location.href='watch.html?id=${video.id}'">
-                        <img src="${video.snippet.thumbnails.high.url}" class="rounded-xl w-full aspect-video object-cover shadow-md">
-                        <h2 class="font-bold mt-3 text-gray-900">${video.snippet.title}</h2>
-                    </div>
-                `;
-            }
-        });
-    } catch (err) {
-        status.innerText = "Error loading videos. Check your Console (F12).";
-    }
+        if (!isBlocked) {
+            grid.innerHTML += `
+                <div class="cursor-pointer" onclick="window.location.href='watch.html?id=${video.id.videoId || video.id}'">
+                    <img src="${video.snippet.thumbnails.high.url}" class="rounded-xl w-full">
+                    <h3 class="font-bold mt-2">${title}</h3>
+                </div>
+            `;
+        }
+    });
 }
-
-fetchVideos();
