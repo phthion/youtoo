@@ -2,19 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouToo</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body.dark { background-color: #0f0f0f; color: white; }
+        body.dark .bg-white { background-color: #1a1a1a; color: white; }
+    </style>
 </head>
-<body class="bg-white">
-    <header class="p-8 border-b text-center">
-        <h1 class="text-4xl font-black text-red-600">YouToo</h1>
-    </header>
-    <main class="max-w-6xl mx-auto p-6">
-        <div id="video-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <p id="status">Loading fresh videos...</p>
-        </div>
-    </main>
+<body class="bg-gray-50 transition-colors">
+    <nav class="p-6 border-b flex justify-between items-center bg-white">
+        <h1 class="text-2xl font-black text-red-600">YouToo</h1>
+        <input type="text" id="search" placeholder="Search..." class="border p-2 rounded-full w-1/3">
+        <button onclick="toggleTheme()" class="px-4 py-2 bg-gray-200 rounded-full">Mode</button>
+    </nav>
+    
+    <div class="flex max-w-7xl mx-auto p-6 gap-8">
+        <aside class="w-1/6 space-y-4">
+            <h2 class="font-bold">Categories</h2>
+            <ul class="text-gray-500 cursor-pointer">
+                <li onclick="fetchVideos('travel')">Travel</li>
+                <li onclick="fetchVideos('music')">Music</li>
+                <li onclick="fetchVideos('technology')">Tech</li>
+            </ul>
+        </aside>
+        <div id="video-grid" class="w-5/6 grid grid-cols-3 gap-6"></div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
