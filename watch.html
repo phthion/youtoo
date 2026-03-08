@@ -18,7 +18,7 @@
         document.getElementById('player').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
         
         // Fetch Metadata (Requires another API call to 'videos' endpoint)
-        fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=YOUR_RESTRICTED_API_KEY_HERE`)
+        fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=AIzaSyDpifV8J2_NIouCqiTBiQFTiAt-YH-XNWU`)
         .then(r => r.json()).then(d => {
             const v = d.items[0];
             document.getElementById('title').innerText = v.snippet.title;
