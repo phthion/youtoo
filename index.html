@@ -1,177 +1,452 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>YouToo</title>
 
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 
+/* =========================
+   ROOT / THEME
+========================= */
+
 :root{
+
 --bg:#f9f9f7;
---card:#ffffff;
---text:#1a1a1a;
---accent:#ff4444;
+--bg2:#ffffff;
+--bg3:#f0efed;
+
+--border:#e2e0db;
+
+--text:#1a1a18;
+--text2:#5a5a56;
+--text3:#8a8a84;
+
+--accent:#d4380d;
+
+--radius:6px;
+--nav-height:56px;
+
+--font:'DM Sans',sans-serif;
+--mono:'DM Mono',monospace;
+
 }
 
 [data-theme="dark"]{
---bg:#111111;
---card:#1e1e1e;
---text:#ffffff;
---accent:#ff6666;
+
+--bg:#111110;
+--bg2:#1a1a18;
+--bg3:#242422;
+
+--border:#2e2e2a;
+
+--text:#f0efe9;
+--text2:#a8a89e;
+--text3:#6a6a62;
+
+--accent:#fa541c;
+
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
+font-family:var(--font);
 background:var(--bg);
 color:var(--text);
+min-height:100vh;
 }
 
-/* NAVBAR */
-
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 25px;
-background:var(--card);
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-
-.logo{
-font-size:20px;
-font-weight:bold;
-color:var(--accent);
+a{
+text-decoration:none;
+color:inherit;
 }
 
 button{
-padding:8px 15px;
 border:none;
-background:var(--accent);
-color:white;
-border-radius:6px;
+background:none;
 cursor:pointer;
+font-family:var(--font);
 }
 
-/* HERO */
+/* =========================
+   NAVBAR
+========================= */
 
-.hero{
-padding:80px 20px;
-text-align:center;
+#nav{
+
+position:fixed;
+top:0;
+left:0;
+right:0;
+
+height:var(--nav-height);
+
+background:var(--bg2);
+border-bottom:1px solid var(--border);
+
+display:flex;
+align-items:center;
+gap:12px;
+
+padding:0 16px;
+
+z-index:100;
+
 }
 
-.hero h1{
-font-size:40px;
-margin-bottom:10px;
+.logo{
+
+font-weight:700;
+font-size:1.2rem;
+color:var(--accent);
+
+display:flex;
+align-items:center;
+gap:6px;
+
 }
 
-.hero p{
-opacity:0.7;
+.logo span{
+color:var(--text);
 }
 
-/* POSTS */
+/* search */
 
-.posts{
-max-width:900px;
+.search{
+
+flex:1;
+max-width:540px;
 margin:auto;
-padding:20px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+
+display:flex;
+align-items:center;
+
+background:var(--bg3);
+border:1px solid var(--border);
+
+border-radius:999px;
+
+padding:6px 14px;
+
 }
 
-.card{
-background:var(--card);
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+.search input{
+
+border:none;
+background:transparent;
+outline:none;
+
+width:100%;
+
+font-size:.9rem;
+
 }
+
+/* buttons */
+
+.nav-buttons{
+display:flex;
+gap:8px;
+}
+
+.icon-btn{
+
+padding:6px 10px;
+
+border:1px solid var(--border);
+border-radius:var(--radius);
+
+background:var(--bg3);
+
+font-size:.8rem;
+
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+#app{
+
+display:flex;
+gap:20px;
+
+padding-top:70px;
+padding-left:20px;
+padding-right:20px;
+
+max-width:1200px;
+margin:auto;
+
+}
+
+/* sidebar */
+
+.sidebar{
+
+width:220px;
+
+}
+
+.sidebar h4{
+
+font-size:.8rem;
+color:var(--text2);
+
+margin-bottom:8px;
+
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar li{
+
+padding:8px;
+border-radius:var(--radius);
+cursor:pointer;
+
+}
+
+.sidebar li:hover{
+background:var(--bg3);
+}
+
+/* feed */
+
+.feed{
+
+flex:1;
+max-width:680px;
+
+}
+
+/* post */
+
+.post{
+
+background:var(--bg2);
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+padding:14px;
+
+margin-bottom:14px;
+
+}
+
+.post-header{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:.85rem;
+margin-bottom:6px;
+
+}
+
+.post-user{
+font-weight:600;
+}
+
+.post-text{
+
+font-size:.9rem;
+line-height:1.6;
+
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
+
 text-align:center;
-padding:40px;
-opacity:0.6;
+padding:30px;
+
+font-size:.75rem;
+color:var(--text3);
+
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+background:var(--border);
+border-radius:3px;
 }
 
 </style>
 </head>
 
+
 <body>
 
-<div class="navbar">
+<!-- NAVBAR -->
 
-<div class="logo">YouToo</div>
+<nav id="nav">
 
-<div>
-<button id="themeToggle">Toggle Theme</button>
+<div class="logo">
+You<span>Too</span>
+</div>
+
+<div class="search">
+<input placeholder="Search YouToo">
+</div>
+
+<div class="nav-buttons">
+
+<button class="icon-btn" id="themeBtn">
+Theme
+</button>
+
+</div>
+
+</nav>
+
+
+<!-- MAIN APP -->
+
+<div id="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<h4>Menu</h4>
+
+<ul>
+<li>Home</li>
+<li>Explore</li>
+<li>Trending</li>
+<li>Bookmarks</li>
+</ul>
+
+</aside>
+
+
+<!-- FEED -->
+
+<main class="feed" id="feed">
+
+<div class="post">
+
+<div class="post-header">
+<span class="post-user">@alex</span>
+<span class="post-time">• just now</span>
+</div>
+
+<div class="post-text">
+Welcome to YouToo.
 </div>
 
 </div>
 
-<section class="hero">
+<div class="post">
 
-<h1>Welcome to YouToo</h1>
-
-<p>Your own social platform.</p>
-
-</section>
-
-<section class="posts">
-
-<div class="card">
-<h3>First Post</h3>
-<p>This is a demo post.</p>
+<div class="post-header">
+<span class="post-user">@sam</span>
+<span class="post-time">• 2m</span>
 </div>
 
-<div class="card">
-<h3>Second Post</h3>
-<p>You can add content here.</p>
+<div class="post-text">
+This is a simple social feed layout.
 </div>
 
-<div class="card">
-<h3>Third Post</h3>
-<p>This site works on GitHub Pages.</p>
 </div>
 
-</section>
+</main>
+
+</div>
+
 
 <footer>
-
-<p>© 2026 YouToo by phthion</p>
-
+YouToo © 2026
 </footer>
+
 
 <script>
 
-/* THEME SYSTEM */
+/* =========================
+   THEME TOGGLE
+========================= */
 
-const toggle = document.getElementById("themeToggle");
+const btn = document.getElementById("themeBtn")
 
-function setTheme(theme){
-document.documentElement.setAttribute("data-theme",theme);
-localStorage.setItem("theme",theme);
-}
+btn.addEventListener("click",()=>{
 
-function loadTheme(){
-const saved = localStorage.getItem("theme");
-if(saved){
-setTheme(saved);
-}
-}
+const html = document.documentElement
 
-toggle.onclick=()=>{
-const current=document.documentElement.getAttribute("data-theme");
+if(html.dataset.theme === "dark"){
 
-if(current==="dark"){
-setTheme("light");
+html.dataset.theme = "light"
+
 }else{
-setTheme("dark");
-}
-};
 
-loadTheme();
+html.dataset.theme = "dark"
+
+}
+
+})
+
+
+/* =========================
+   SIMPLE POST SYSTEM
+========================= */
+
+function createPost(user,text){
+
+const feed = document.getElementById("feed")
+
+const post = document.createElement("div")
+post.className="post"
+
+post.innerHTML = `
+
+<div class="post-header">
+<span class="post-user">@${user}</span>
+<span>• now</span>
+</div>
+
+<div class="post-text">
+${text}
+</div>
+
+`
+
+feed.prepend(post)
+
+}
+
+/* example */
+
+createPost("you","Your YouToo site is running.")
 
 </script>
 
