@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YouToo</title>
+
+<style>
+
+:root{
+--bg:#f9f9f7;
+--card:#ffffff;
+--text:#1a1a1a;
+--accent:#ff4444;
+}
+
+[data-theme="dark"]{
+--bg:#111111;
+--card:#1e1e1e;
+--text:#ffffff;
+--accent:#ff6666;
+}
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:var(--card);
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo{
+font-size:20px;
+font-weight:bold;
+color:var(--accent);
+}
+
+button{
+padding:8px 15px;
+border:none;
+background:var(--accent);
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:0.7;
+}
+
+/* POSTS */
+
+.posts{
+max-width:900px;
+margin:auto;
+padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:var(--card);
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+footer{
+text-align:center;
+padding:40px;
+opacity:0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">YouToo</div>
+
+<div>
+<button id="themeToggle">Toggle Theme</button>
+</div>
+
+</div>
+
+<section class="hero">
+
+<h1>Welcome to YouToo</h1>
+
+<p>Your own social platform.</p>
+
+</section>
+
+<section class="posts">
+
+<div class="card">
+<h3>First Post</h3>
+<p>This is a demo post.</p>
+</div>
+
+<div class="card">
+<h3>Second Post</h3>
+<p>You can add content here.</p>
+</div>
+
+<div class="card">
+<h3>Third Post</h3>
+<p>This site works on GitHub Pages.</p>
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 YouToo by phthion</p>
+
+</footer>
+
+<script>
+
+/* THEME SYSTEM */
+
+const toggle = document.getElementById("themeToggle");
+
+function setTheme(theme){
+document.documentElement.setAttribute("data-theme",theme);
+localStorage.setItem("theme",theme);
+}
+
+function loadTheme(){
+const saved = localStorage.getItem("theme");
+if(saved){
+setTheme(saved);
+}
+}
+
+toggle.onclick=()=>{
+const current=document.documentElement.getAttribute("data-theme");
+
+if(current==="dark"){
+setTheme("light");
+}else{
+setTheme("dark");
+}
+};
+
+loadTheme();
+
+</script>
+
+</body>
+</html>
