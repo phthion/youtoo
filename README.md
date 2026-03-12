@@ -1,6 +1,6 @@
 # YOUTOO
 ## About YouToo
-YouTube but better, "no shorts", no ads (as long as you Brave browse or any extension), and is not eat too much RAM :)
+YouTube but better, "no shorts", no ads (as long as you brave browse or any extension), is not eat too much RAM, and you can block keyword, that mean you can block the video that have the title that you block (English is hard) but yeah.
 ## How to access YouToo
 *Step 1*: Open https://console.cloud.google.com/ 
 
