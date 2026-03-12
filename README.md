@@ -1,7 +1,7 @@
 # YOUTOO
-# About YouToo
+## About YouToo
 YouTube but better, "no shorts", no ads (as long as you Brave browse or any extension), and is not eat too much RAM :)
-# How to access YouToo
+## How to access YouToo
 *Step 1*: Open https://console.cloud.google.com/ 
 
 *Step 2*: Right side of *Google Cloud* logo, click "Open project picker", and then click new project.
@@ -20,5 +20,5 @@ YouTube but better, "no shorts", no ads (as long as you Brave browse or any exte
 then create.
 
 Step 9: It will show you the api key, copy it and paste to https://phthion.github.io/youtoo/, and that it!
-# Note
+## Note
 If the "API quota used today" hit 10000, refresh the websites.
