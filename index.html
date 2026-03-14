@@ -3131,10 +3131,10 @@ function renderWatch(){
   vfBody.querySelectorAll('iframe').forEach(f=>f.remove()); // clear old iframe if any
   const ifr=document.createElement('iframe');ifr.id='yt-iframe';
   // enablejsapi=1 allows postMessage commands (play/pause) and proper keyboard focus
-  ifr.src=`https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1&enablejsapi=1&controls=1&iv_load_policy=3&autoplay=1&mute=1`;
+  ifr.src=`https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1&enablejsapi=1&controls=1&iv_load_policy=3&autoplay=1&mute=0`;
   ifr.setAttribute('allowfullscreen','');ifr.setAttribute('allow','autoplay; encrypted-media; fullscreen; picture-in-picture');
   ifr.setAttribute('referrerpolicy','strict-origin-when-cross-origin');ifr.setAttribute('title',x(v.title));
-  // Once loaded: unmute (mute=1 was only needed for autoplay), subscribe, focus
+  // Once loaded: unmute (mute=0 was only needed for autoplay), subscribe, focus
   ifr.addEventListener('load',()=>{
     setTimeout(()=>{
       ytSubscribe();
